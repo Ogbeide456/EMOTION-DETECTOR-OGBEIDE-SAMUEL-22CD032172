@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detector</title>
+    <style>
+        /* Reset some default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #6dd5fa, #2980b9);
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #2980b9;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 10px;
+        }
+
+        input[type="file"] {
+            margin: 15px 0;
+            padding: 8px;
+            border: 2px dashed #2980b9;
+            border-radius: 10px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        input[type="file"]:hover {
+            background-color: #ecf6ff;
+        }
+
+        input[type="submit"] {
+            background: #2980b9;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #1a5f85;
+        }
+
+        .result {
+            margin-top: 25px;
+            background: #ecf6ff;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .result h3 {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .result img {
+            margin-top: 15px;
+            border-radius: 10px;
+            width: 200px;
+            border: 3px solid #2980b9;
+            transition: transform 0.3s ease;
+        }
+
+        .result img:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        footer a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>😊 Emotion Detector</h2>
+        <p>Upload a face image and let the system analyze the emotion!</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required><br>
+            <input type="submit" value="Detect Emotion">
+        </form>
+
+        {% if emotion %}
+        <div class="result">
+            <h3>Predicted Emotion: {{ emotion }}</h3>
+            <img src="/static/{{ image }}" alt="Uploaded Face">
+        </div>
+        {% endif %}
+
+        <footer>
+            <p>Powered by <a href="#">AI Emotion Engine</a> | &copy; 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
